@@ -6,14 +6,15 @@ const filter = document.getElementById("filter");
 async function fetchProducts() {
 	const response = await fetch(apiUrl);
 	const products = await response.json();
-	renderProducts(products);
-	populateFilter(products);
+	const productosMostrados = products.slice(0, 16);
+	renderProducts(productosMostrados);
+	populateFilter(productosMostrados);
 }
 
 // Ingresando los productos en manera de lectura
-function renderProducts(products) {
+function renderProducts(productosMostrados) {
 	productContainer.innerHTML = "";
-	products.forEach((product) => {
+	productosMostrados.forEach((product) => {
 		const card = document.createElement("div");
 		card.className =
 			"flex overflow-hidden flex-col p-4 bg-white rounded-lg border shadow-lg transition-transform transform hover:-translate-y-2 hover:shadow-2xl duration-300 ease-in-out";
